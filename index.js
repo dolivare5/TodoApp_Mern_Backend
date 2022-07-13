@@ -13,19 +13,14 @@ dotenv.config();
 
 conectarDB();
 
+
 // Configurar Cors
 // Dominios permitidos
-const whiteList = [process.env.FRONTEND_URL];
 const corsOptions = {
-    origin: function (origin, callback){
-        if(whiteList.includes(origin)){
-            // Puede consultar la API
-            callback(null, true);
-        }else{
-            //No está permitido hacer request o peticiones a la API
-            callback(new Error("Error de Cors"));
-        }
-    }
+    origin: '*',
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions));
